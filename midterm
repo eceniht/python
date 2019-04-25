@@ -1,0 +1,300 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# <Center>數據分析期中考</Center>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### 資料檔案為某電子商務網站的交易數據, 檔案名稱為Transcations.csv\n",
+    "### 欄位的意義為:\n",
+    "- ### order_id：訂單號碼\n",
+    "- ### buyer_mobile：消費者的手機加密後的數字\n",
+    "- ### product_parent_id：該訂單購買的商品組合\n",
+    "- ### product_id：該訂單購買的商品組合的內容\n",
+    "- ### menu_id：該product_parent_id所屬的分類\n",
+    "- ### menu_name：分類名稱\n",
+    "- ### total：商品售價\n",
+    "- ### crdate：訂單日期"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "import numpy as np\n",
+    "import matplotlib.pyplot as plt\n",
+    "import os, sys, psutil, gc\n",
+    "from datetime import datetime, timedelta\n",
+    "timeStamp = datetime.now().strftime('%Y%m%d-%H-%M')\n",
+    "print (timeStamp)\n",
+    "%matplotlib inline"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": true
+   },
+   "source": [
+    "### 設定最後交易日為2016-12-31"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "TransactionEndingDate = datetime.strptime('2016-12-31', '%Y-%m-%d')\n",
+    "print(TransactionEndingDate)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Q1: 將交易數據檔案Transactions.csv讀進TransactionDataDF中"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "TransactionDataDF = pd.read_csv(....................)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Q2: 顯示TransactionDataDF的前後各15筆資料"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Q3: 顯示TransactionDataDF中欄位的缺值數量"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Q4: 顯示TransactionDataDF中的不重複的消費者人數"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Q5: 將TransactionDataDF中有缺值的,以及product_id是0的記錄刪除後, 顯示\n",
+    "- ### 1. Total number of unique buyer_mobile\n",
+    "- ### 2. Total number of unique order_id\n",
+    "- ### 3. Total number of unique product_parent_id\n",
+    "- ### 4. Total number of unique product_id\n",
+    "- ### 5. Total number of unique menu_id "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Q6: 以序號(連續數字)替換buyer_mobile的內容"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### TransactionDataDF的目前欄位應為['order_id', 'buyer_mobile', 'product_parent_id', 'product_id', 'menu_id', 'menu_name', 'total', 'crdate'] dtype='object')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Q7: 將crdate字符串類型轉換為Datetime類型"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Q8: 計算每位消費者最後一次消費的日期距離最後交易日(2016-12-31)的天數(Recency), 例如某消費者最後一次消費日是2016-12-28 14:40:43.350772則答案為2日), 經計算後產生一個名為RecencyDF的DataFrame, 其欄位為'buyer_mobile', 'Latest_Purchase_Date'以及'Recency'"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Q9: 計算每位消費者共消費次數(PurchaseTimes)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Q10: 計算每位消費者消費次數統計值, 統計值含平均值(MeanTurnover), 標準差(StdTurnover),最小值(MinTurnover),最大值(MaxTurnover), 產生一一個名為FrequencyStatisticsDF的DataFrame, 其欄位為['buyer_mobile', 'MeanTurnover', 'StdTurnover', 'MinTurnover', 'MaxTurnover', 'PurchaseTimes']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Q11: 計算每位消費者共消費金額(TotalSpending)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Q12: 計算每位消費者消費金額統計值, 統計值含平均值(MeanSpending), 標準差(StdSpending),最小值(MinSpending),最大值(MaxSpending), 產生一一個名為MonetaryStatisticsDF的DataFrame, 其欄位為['buyer_mobile', 'MinSpending', 'MaxSpending', 'MinTurnover', 'MaxTurnover', 'TotalSpending']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Q13: 使用merge函數將RecencyDF, FrequencyStatisticsDF, MonetaryStatisticsDF整合成為一個DataFrame並命名為RFMsDF"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Q14: RFMsDF中若有缺值,請用適當的值填充"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Q15: 將RFMsDF儲存為一壓縮檔並命名為RFMsDF.csv.zip"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.7.1"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
